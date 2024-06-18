@@ -1,5 +1,3 @@
-# modèle/utilisateur.py
-
 from datetime import datetime
 
 class Utilisateur:
