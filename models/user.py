@@ -1,5 +1,7 @@
 # modèle/utilisateur.py
 
+from datetime import datetime
+
 class Utilisateur:
     emails_utilisateurs = set()
 
@@ -12,8 +14,16 @@ class Utilisateur:
         self.email = email
         self.nom = nom
         self.lieux = []
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
 
     def ajouter_lieu(self, lieu):
         if lieu not in self.lieux:
             self.lieux.append(lieu)
             lieu.hôte = self  # relation lieu hôte
+        self.updated_at = datetime.now()
+
+    def mettre_a_jour(self, nom=None):
+        if nom:
+            self.nom = nom
+        self.updated_at = datetime.now()
