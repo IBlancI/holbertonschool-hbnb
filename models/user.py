@@ -1,5 +1,19 @@
-class User:
-    def init(self, user_id, email, name):
-        self.user_id = user_id
+# modèle/utilisateur.py
+
+class Utilisateur:
+    emails_utilisateurs = set()
+
+    def __init__(self, id_utilisateur, email, nom):
+        if email in Utilisateur.emails_utilisateurs:
+            raise ValueError("Cet email est déjà utilisé.")
+        Utilisateur.emails_utilisateurs.add(email)
+        
+        self.id_utilisateur = id_utilisateur
         self.email = email
-        self.name = name
+        self.nom = nom
+        self.lieux = []
+
+    def ajouter_lieu(self, lieu):
+        if lieu not in self.lieux:
+            self.lieux.append(lieu)
+            lieu.hôte = self  # relation lieu hôte
