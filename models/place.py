@@ -1,10 +1,15 @@
-class Place:
-    def init(self, place_id, name, location, host):
-        self.place_id = place_id
-        self.name = name
-        self.location = location
-        self.host = host
-        self.reviews = []
+# modèle/lieu.py
 
-    def add_review(self, review):
-        self.reviews.append(review)
+class Lieu:
+    def __init__(self, id_lieu, nom, hôte):
+        if hôte is None:
+            raise ValueError("Un lieu doit avoir un hôte.")
+        
+        self.id_lieu = id_lieu
+        self.nom = nom
+        self.hôte = hôte
+        self.avis = []
+
+    def ajouter_avis(self, avis):
+        if avis not in self.avis:
+            self.avis.append(avis)
